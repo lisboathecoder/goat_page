@@ -1,58 +1,480 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
 * {
-    box-sizing: 0;
-    margin: 0;
-    padding: 0;
-}
-
-header.escuro {
-    display: flex;
-    padding: 25px;
-    background-color: #222;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-header.claro {
-    display: flex;
-    padding: 25px;
-    background-color: #ffffff;
-    color: #04b0ff;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  background-image: linear-gradient(360deg, #b90000 25%, #222 55%);
-  color: #222;
+  box-sizing: border-box;
   margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  padding: 0;
 }
 
-#botao {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 100%;
-    background: transparent;
-    font-size: 1.7rem;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+  html, body {
+    height: 100%;
+    margin: 0;
+    min-height: 100vh;
+    background-color: #000000;
+  }
 
 body.claro {
-  background-image: linear-gradient(360deg, #04b0ff 25%, #ffffff 55%);
-color: #222;
+  background: linear-gradient(to bottom, #8a2be2, #000000);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
+  font-family: "Creepster", system-ui;
+  animation: fadeIn 1s ease-in-out;
 }
 
 body.escuro {
-background-color: linear-gradient(360deg, #b90000 25%, #222 55%);;
-color: #f2f2f2;
+  background: linear-gradient(to bottom, #964300, #000000);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #f2f2f2;
+  font-family: "Creepster", system-ui;
+  animation: fadeIn 1s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+body.escuro::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+#botao {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  background: transparent;
+  font-size: 1.7rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#botao:hover {
+  transform: scale(1.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#botao:active {
+  transform: scale(0.9);
+}
+
+body.claro header {
+  background-color: #450085;
+  color: #b535ff;
+  animation: slideDown 0.5s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #ffffff;
+}
+
+body.escuro header {
+  background-color: #3b0a0a;
+  color: #ff7518;
+  animation: slideDown 0.5s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #ffffff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+#sobre-mim, #hobbies {
+  display: block;
+  justify-content: center;
+  align-items: center;
+
+  margin: 2rem;
+  padding: 1rem;
+  border: 2px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  background: transparent;
+  color: inherit;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  transition: box-shadow 200ms ease, transform 150ms ease;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.claro #sobre-mim,
+body.claro #hobbies {
+  background: linear-gradient(135deg, rgba(138,43,226,0.14), rgba(0,0,0,0.22));
+  box-shadow: 0 10px 30px rgba(138,43,226,0.10);
+  border: 2px solid rgba(255,255,255,0.08);
+}
+
+body.escuro #sobre-mim,
+body.escuro #hobbies {
+  background: linear-gradient(135deg, rgba(185,90,0,0.10), rgba(0,0,0,0.45));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+  border: 2px solid rgba(255,255,255,0.06);
+}
+
+/* títulos iguais ao contato */
+#sobre-mim h1,
+#hobbies h1,
+.contact-title,
+#contato h2 {
+  font-family: "Creepster", system-ui;
+  font-size: clamp(1.2rem, 2.6vw, 1.8rem);
+  letter-spacing: 1px;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+}
+
+/* parágrafos e textos */
+#sobre-mim p,
+#hobbies p,
+#hobbies li {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  line-height: 1.35;
+  margin: 0.3rem 0;
+  font-family: system-ui, sans-serif;
+}
+
+/* lista de hobbies alinhada e espaçada como no design */
+#hobbies ul {
+  list-style: disc;
+  margin: 0.5rem 0 0 1.25rem;
+  padding: 0;
+}
+
+/* manter responsividade e largura parecida com #contato */
+@media (min-width: 900px) {
+  #sobre-mim, #hobbies, #contato {
+    padding: 1.25rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #sobre-mim, #hobbies {
+    width: 96%;
+    padding: 0.9rem;
+  }
+}
+
+#hobbies ul {
+  list-style-type: circle;
+  margin-left: 1.5rem;
+}
+
+#contato {
+  margin: 2rem;
+  padding: 1rem;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-in-out;
+
+}
+
+#contato, .contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 90%;
+  max-width: 900px;
+  min-width: 260px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.08);
+  text-align: center;
+  background: transparent;
+  transition: box-shadow 200ms ease, transform 150ms ease;
+}
+
+body.claro #contato, body.claro .contact {
+  background: linear-gradient(135deg, rgba(138,43,226,0.14), rgba(0,0,0,0.22));
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(138,43,226,0.10);
+}
+
+body.escuro #contato, body.escuro .contact {
+  background: linear-gradient(135deg, rgba(185,90,0,0.10), rgba(0,0,0,0.45));
+  color: hsl(0, 0%, 100%);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.contact-title {
+  font-family: "Creepster", system-ui;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0;
+}
+
+footer {
+  position: relative;
+  text-align: center;
+  margin-top: 2rem;
+  padding: clamp(1.5rem, 3vw, 3rem) 1rem;
+  color: #ffffff;
+  background: linear-gradient(180deg,#000000 0%, #050006 100%);
+  overflow: hidden;
+  min-height: 140px;
+  box-sizing: border-box;
+}
+
+/* teia de fundo repetida (predominância roxa) */
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/1292978-6340b5.svg");
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  filter: hue-rotate(240deg) saturate(220%) brightness(0.95);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* faixa de teias no topo do footer */
+footer .teia-top {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-image: url("../img/1292978-6340b5.svg");
+  background-repeat: repeat-x;
+  background-size: 90px 90px;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+}
+
+footer .footer-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* esconde imagens soltas (ex.: abóbora) dentro do footer */
+footer img {
+  display: none !important;
+}
+
+/* aranhas decorativas (na frente) */
+.spider {
+  position: absolute;
+  width: 5rem;
+  height: auto;
+  aspect-ratio: 1/1;
+  background-image: url("../img/1292978-6340b5.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 4;
+  pointer-events: none;
+  animation: floaty 6s ease-in-out infinite;
+  transform-origin: center;
+  opacity: 0.95;
+  filter: hue-rotate(230deg) saturate(220%) contrast(1.05);
+  will-change: transform;
+}
+
+/* posições mantidas dentro do footer (evita sair para área branca) */
+.spider.s1 { left: 4%;  top: 12%; transform: scale(0.6); animation-delay: 0s; }
+.spider.s2 { left: 30%; top: 8%;  transform: scale(0.8); animation-delay: 1.1s; }
+.spider.s3 { left: 58%; top: 12%; transform: scale(0.7); animation-delay: 2.4s; }
+.spider.s4 { left: 82%; top: 8%;  transform: scale(0.9); animation-delay: 3.6s; }
+
+@keyframes floaty {
+  0%   { transform: translateY(0) rotate(-6deg); }
+  25%  { transform: translateY(-8px) rotate(6deg); }
+  50%  { transform: translateY(0) rotate(-6deg); }
+  75%  { transform: translateY(8px) rotate(6deg); }
+  100% { transform: translateY(0) rotate(-6deg); }
+}
+
+/* responsividade: menor altura, ajustar teias e aranhas */
+@media (max-width: 900px) {
+  footer { padding: clamp(1rem, 4vw, 2rem) 1rem; min-height: 120px; }
+  .spider { width: clamp(36px, 8vw, 56px); }
+}
+
+@media (max-width: 600px) {
+  footer::before { background-size: 70px 70px; opacity: 0.14; }
+  footer .teia-top { height: 64px; top: -4px; background-size: 64px 64px; opacity: 0.16; }
+  .spider { width: clamp(28px, 10vw, 44px); }
+  .spider.s1 { left: 3%; top: 14%; }
+  .spider.s3 { left: 60%; top: 14%; }
+}
+
+/*# sourceMappingURL=styles.css.map */
+
+contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 90%;
+  max-width: 900px;
+  min-width: 260px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.08);
+  text-align: center;
+  background: transparent;
+  transition: box-shadow 200ms ease, transform 150ms ease;
+}
+
+body.claro contact {
+  background: linear-gradient(135deg, rgba(138,43,226,0.12), rgba(0,0,0,0.22));
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(138,43,226,0.10);
+}
+
+body.escuro contact {
+  background: linear-gradient(135deg, rgba(185,90,0,0.10), rgba(0,0,0,0.45));
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+contact p {
+  margin: 0;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  line-height: 1.2;
+}
+
+.contact-title {
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+  margin-bottom: 0.25rem;
+}
+
+/* botões sociais - igual ao estilo do site */
+.contact .socials,
+contact .social-btn,
+#contato .social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+contact .social-btn,
+#contato .social-btn {
+  width: 2.6rem;
+  height: 2.6rem;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+contact .social-btn:hover,
+#contato .social-btn:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(138,43,226,0.14);
+  background: rgba(255,255,255,0.06);
+}
+
+#contato .socials,
+.contact .socials,
+contact .socials {
+  gap: 1rem; 
+  justify-content: center;
+  align-items: center;
+}
+
+#contato .socials .social-btn + .social-btn,
+.contact .socials .social-btn + .social-btn {
+  margin-left: 0.6rem;
+}
+
+@media (min-width: 900px) {
+  contact {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+  }
+  contact .content {
+    flex: 1 1 60%;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  contact {
+    width: 96%;
+    padding: 0.9rem;
+    gap: 0.5rem;
+  }
+  contact .social-btn,
+  #contato .social-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1rem;
+  }
+}
+
+#botao {
+
+  display: inline-flex;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 1.7rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#botao:hover {
+  transform: scale(1.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#botao:active {
+  transform: scale(0.9);
 }
